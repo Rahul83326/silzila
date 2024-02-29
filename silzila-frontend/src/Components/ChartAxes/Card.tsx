@@ -50,6 +50,7 @@ const Card = ({
 	updateAxesQueryParamForDm,
 	sortAxesForDm,
 	revertAxesForDm,
+	
 }: CardProps) => {
 	field.dataType = field.dataType.toLowerCase();
 
@@ -76,6 +77,8 @@ const Card = ({
 		}
 		// chartPropUpdated(true);
 	};
+
+	const [renamedName, setRenamedFields] = useState<{[key: string]: string}>({});
 
 	const [showOptions, setShowOptions] = useState<boolean>(false);
 
@@ -121,7 +124,7 @@ const Card = ({
 		item: {
 			uId: field.uId,
 			fieldname: field.fieldname,
-			displayname: field.fieldname,
+			displayname: field.displayname,
 			dataType: field.dataType,
 			prefix: field.prefix,
 			tableId: field.tableId,
@@ -200,7 +203,7 @@ const Card = ({
 				MenuListProps={{
 					"aria-labelledby": "basic-button",
 				}}
-			>
+			    >
 				{options.length > 0
 					? options.map(opt => {
 							return (
@@ -236,8 +239,26 @@ const Card = ({
 						<i>-- No options --</i>
 					</MenuItem>
 				) : null}
+				<MenuItem onClick={() => handleRename(field.uId ?? '')}>Rename</MenuItem>
 			</Menu>
 		);
+	};
+
+	// Add this function to the Card component
+	const handleRename = (uId: string) => {
+		const newName = prompt("Enter a new name:");
+		if (newName) {
+		// Update the displayname and dispatch the action
+		const updatedField = { ...field, displayname: newName };
+
+		setRenamedFields(prevState => ({ ...prevState, [uId]: newName }));
+
+		if (chartType === "richText") {
+			updateAxesQueryParamForDm(propKey, bIndex, itemIndex, updatedField);
+		} else {
+			updateQueryParam(propKey, bIndex, itemIndex, updatedField);
+		}
+		}
 	};
 
 	return field ? (
@@ -261,8 +282,8 @@ const Card = ({
 				<CloseRoundedIcon style={{ fontSize: "13px", margin: "auto" }} />
 			</button>
 
-			<span className="columnName ">{field.fieldname}</span>
-			<span className="columnPrefix">
+			<span className="columnName">{field.renamedName ?? field.fieldname}</span>	
+					<span className="columnPrefix">
 				{field.agg ? AggregatorKeys[field.agg] : null}
 
 				{field.timeGrain && field.agg ? <React.Fragment>, </React.Fragment> : null}
@@ -280,6 +301,7 @@ const Card = ({
 			>
 				<KeyboardArrowDownRoundedIcon style={{ fontSize: "14px", margin: "auto" }} />
 			</button>
+			 <div className="oldNameHover">{field.displayname}</div>
 			<RenderMenu />
 		</div>
 	) : null;

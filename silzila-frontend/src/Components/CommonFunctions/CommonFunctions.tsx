@@ -185,6 +185,25 @@ export const generateRandomColorArray = (length:number) => {
 		}				
 	}
 
+	export const displayName = (field:any)=>{
+		if(field){
+			if(field.agg || field.timeGrain){
+				if(["date", "timestamp"].includes(field.dataType)){
+					return `${field.timeGrain} of ${field.displayname}`;
+				}
+				else{
+					return `${field.agg} of ${field.displayname}`;
+				}
+			}
+			else{
+				return field.displayname;
+			}
+		}
+		else{
+			return field;
+		}				
+	}
+
 	const fetchFieldData = (bodyData: any, chartProperties:any, propKey:string, token:string) => {
 
 		//  bodyData: any = {
@@ -199,7 +218,7 @@ export const generateRandomColorArray = (length:number) => {
 
 		bodyData.filterOption = "allValues";
 		bodyData.fieldName = bodyData.fieldname
-
+		bodyData.displayName = bodyData.displayname
 		
 
 		return FetchData({

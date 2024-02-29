@@ -506,11 +506,11 @@ const GraphArea = ({
 					var tempTitle = "";
 					fields.forEach((element: any, index: number) => {
 						if (index === 0) {
-							let titlePart = element.fieldname;
+							let titlePart = element.displayname;
 							tempTitle = tempTitle + titlePart;
 						}
 						if (index > 0) {
-							let titlePart: any = `, ${element.fieldname}`;
+							let titlePart: any = `, ${element.displayname}`;
 							tempTitle = tempTitle + titlePart;
 						}
 					});

@@ -12,10 +12,56 @@
 	border: 1px solid rgb(211, 211, 211);
 	color: rgb(87, 87, 87);
 }
+
+.axisField {
+	position: relative;
+  }
+  
+  .oldNameHover {
+	position: absolute;
+	top: -30px; /* Adjust the distance from the top */
+	left: 70%; /* Position horizontally in the middle */
+	transform: translateX(-50%); /* Center horizontally */
+	background-color: #fff;
+	padding: 5px;
+	border: 1px solid #ccc;
+	display: none;
+  }
+  
+  .oldNameHover::before {
+	content: "";
+	position: absolute;
+	top: 100%; /* Position the arrow below the box */
+	left: 50%; /* Position the arrow horizontally in the middle */
+	border-width: 6px; /* Adjust arrow size */
+	border-style: solid;
+	border-color: #ccc transparent transparent transparent; /* Color the arrow */
+	transform: translateX(-50%); /* Center the arrow horizontally */
+  }
+
+  .axisField .columnDown {
+	cursor: pointer; /* Ensure cursor changes on hover */
+  }
+  
+  /* Hide the hover box by default */
+  .hoverDelay .oldNameHover {
+	display: none;
+  }
+  
+  /* Add transition for smooth effect */
+  .axisField .oldNameHover {
+	transition: opacity 0.7s ease-out;
+  }
+  
+  .axisField:hover .oldNameHover {
+	display: block;
+  }
+  
 .axisField:hover {
 	border: 1px solid #2bb9bb;
 	color: #2bb9bb;
-	/* font-weight: 600; */
+	font-weight: 600;
+
 }
 
 .buttonCommon {

@@ -567,24 +567,24 @@ const ChartData = ({
 							if (zoneItem.name === "Measure") {
 								if (field.dataType !== "date" && field.dataType !== "timestamp") {
 									_nameWithAgg = field.agg
-										? `${field.agg} of ${field.fieldname}`
-										: field.fieldname;
+										? `${field.agg} of ${field.displayname}`
+										: field.displayname;
 								} else {
 									let _timeGrain: string = field.timeGrain || "";
 									_nameWithAgg = field.agg
-										? `${field.agg} ${_timeGrain} of ${field.fieldname}`
-										: field.fieldname;
+										? `${field.agg} ${_timeGrain} of ${field.displayname}`
+										: field.displayname;
 								}
 							} else {
 								if (field.dataType !== "date" && field.dataType !== "timestamp") {
 									_nameWithAgg = field.agg
-										? `${field.agg} of ${field.fieldname}`
-										: field.fieldname;
+										? `${field.agg} of ${field.displayname}`
+										: field.displayname;
 								} else {
 									let _timeGrain: string = field.timeGrain || "";
 									_nameWithAgg = _timeGrain
-										? `${_timeGrain} of ${field.fieldname}`
-										: field.fieldname;
+										? `${_timeGrain} of ${field.displayname}`
+										: field.displayname;
 								}
 							}
 

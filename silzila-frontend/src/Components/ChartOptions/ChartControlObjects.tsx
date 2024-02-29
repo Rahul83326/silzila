@@ -13,7 +13,7 @@ const ChartControlObjects = ({
 
 	// dispatch
 	changeChartOption,
-	changeDynamicMeasureOption,
+	changeDynamicMeasureOption,         
 }: any) => {
 	var propKey = `${tabTileProps.selectedTabId}.${tabTileProps.selectedTileId}`;
 	var selectedChart = chartProp.properties[propKey].chartType;

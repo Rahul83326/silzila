@@ -31,11 +31,11 @@ const Sankey = ({
 		if (chartData.length >= 1) {
 			dimensionsKeys = chartProperties.properties[propKey].chartAxes[1].fields.map(el => {
 				if ("timeGrain" in el) {
-					return `${el.timeGrain} of ${el.fieldname}`;
+					return `${el.timeGrain} of ${el.displayname}`;
 				} else if ("agg" in el) {
-					return `${el.agg} of ${el.fieldname} `;
+					return `${el.agg} of ${el.displayname} `;
 				} else {
-					return el.fieldname;
+					return el.displayname;
 				}
 			});
 
@@ -43,7 +43,7 @@ const Sankey = ({
 
 			chartProperties.properties[propKey].chartAxes[2].fields.forEach(el => {
 				// measure = `${el.fieldname}__${el.agg}`;
-				measure = `${el.agg} of ${el.fieldname}`;
+				measure = `${el.agg} of ${el.displayname}`;
 			});
 
 			const getColorOfNode = (nodeName: string) => {

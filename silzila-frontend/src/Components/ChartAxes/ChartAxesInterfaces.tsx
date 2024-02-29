@@ -150,6 +150,7 @@ export interface Card {
 		tableId?: string;
 		agg?: any;
 		timeGrain?: any;
+		renamedName?: string; 
 	};
 	bIndex: number;
 	itemIndex: number;

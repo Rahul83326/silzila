@@ -23,11 +23,11 @@ export const getKeyWithPrefix = (item : any = {}, dustbinName? :string, fieldTem
 
   if(dustbinName === "val"){
     if(item.dataType.toLowerCase() !== "date" && item.dataType.toLowerCase() !== "timestamp"){
-      _nameWithAgg =	item.agg ? `${item.agg} of ${item.fieldname}`: item.fieldname;
+      _nameWithAgg =	item.agg ? `${item.agg} of ${item.displayname}`: item.displayname;
     }
     else{
       let _timeGrain:string = item.timeGrain || "";
-      _nameWithAgg = 	item.agg ? `${item.agg} ${_timeGrain} of ${item.fieldname}`: item.fieldname;
+      _nameWithAgg = 	item.agg ? `${item.agg} ${_timeGrain} of ${item.displayname}`: item.displayname;
     }
 
  
@@ -37,7 +37,7 @@ export const getKeyWithPrefix = (item : any = {}, dustbinName? :string, fieldTem
   }
   else{
     let _timeGrain:string = item.timeGrain || "";
-    _nameWithAgg = 	_timeGrain ? `${_timeGrain} of ${item.fieldname}`: item.fieldname;
+    _nameWithAgg = 	_timeGrain ? `${_timeGrain} of ${item.displayname}`: item.displayname;
   }
 
   return _nameWithAgg;
